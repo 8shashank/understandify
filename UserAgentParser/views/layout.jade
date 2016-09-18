@@ -2,15 +2,20 @@ doctype html
 html(ng-app="WebTools")
   head
     title= title
-
     base(href="/")
-
     link(rel='stylesheet', href='/stylesheets/style.css')
     link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
     script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js')
     script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-route.js')
-  body
-    p Hello
-    div(ng-view)
-    script(src='../public/javascripts/clientRouter.js')
-
+  body(ng-controller="mainController")
+    include header
+    .container-fluid
+        .col-md-3
+            include navbar
+        .col-md-9
+            .main
+                p Hello
+                div(ng-view)
+                script(src='../public/javascripts/clientRouter.js')
+                script(src='../public/controllers/mainController.js')
+                script(src='../public/controllers/userAgentController.js')

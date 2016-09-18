@@ -1,6 +1,7 @@
-h1= title
-p Welcome to #{title}
-form(name="UserAgentInfo", method="post",action="parseAgent")
+div(ng-controller='userAgentController') 
+  h1= title
+  p Welcome to #{title}
   div
-    input(type="text", name="userAgent", size="100")
-    input(type="submit", value = "Parse")
+    input(type="text", name="userAgent", size="100", ng-model="uaString")
+    input(type="submit", ng-click="getUserAgent()", ng-disabled="uaString.length==0")
+    input(type="text", ng-model="parsedAgent", size="100")

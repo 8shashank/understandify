@@ -3,7 +3,7 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider,$loca
             $locationProvider.html5Mode(true);
             $routeProvider
                 .when("/", {
-                    templateUrl: "partials/welcome.jade"
+                    templateUrl: "partials/welcome.jade",
                 })
                 .when("/uaParser", {
                     templateUrl: "partials/uaParser.jade"

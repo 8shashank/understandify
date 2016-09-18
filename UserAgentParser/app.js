@@ -22,8 +22,8 @@ app.use(cookieParser());
 app.use('/public',express.static(path.join(__dirname, 'public')));
 
 app.post('/parseAgent', function(req, res, next){
+  console.log(req.body.userAgent);
  var PythonShell = require('python-shell');
-
  var options = {
    mode: 'text',
    pythonPath: 'C:/Python27/python.exe',
@@ -31,8 +31,9 @@ app.post('/parseAgent', function(req, res, next){
    scriptPath: './',
    args: [req.body.userAgent]
  };
-
- PythonShell.run('E:/Personal_Projects/understandify/UserAgentParser/routes/parser.py', options, function(err, results){
+ PythonShell.run('../parser.py', options, function(err, results){
+     console.log(results);
+     console.log(err);
    if (err) res.send("This error" + err);
    else res.send(results);
  })
