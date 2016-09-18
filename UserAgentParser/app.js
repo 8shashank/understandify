@@ -26,12 +26,11 @@ app.post('/parseAgent', function(req, res, next){
  var PythonShell = require('python-shell');
  var options = {
    mode: 'text',
-   pythonPath: 'C:/Python27/python.exe',
    pythonOptions: ['-u'],
-   scriptPath: './',
+   scriptPath: '../',
    args: [req.body.userAgent]
  };
- PythonShell.run('../parser.py', options, function(err, results){
+ PythonShell.run('parser.py', options, function(err, results){
      console.log(results);
      console.log(err);
    if (err) res.send("This error" + err);
