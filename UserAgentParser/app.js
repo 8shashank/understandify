@@ -5,8 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var routes = require('./routes/index');
-var users = require('./routes/users');
+var routes = require('./routes/landing');
 
 var app = express();
 
@@ -20,10 +19,29 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use('/public',express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
-app.use('/users', users);
+app.post('/parseAgent', function(req, res, next){
+ var PythonShell = require('python-shell');
+
+ var options = {
+   mode: 'text',
+   pythonPath: 'C:/Python27/python.exe',
+   pythonOptions: ['-u'],
+   scriptPath: './',
+   args: [req.body.userAgent]
+ };
+
+ PythonShell.run('E:/Personal_Projects/understandify/UserAgentParser/routes/parser.py', options, function(err, results){
+   if (err) res.send("This error" + err);
+   else res.send(results);
+ })
+})
+
+
+app.get('/', routes.index);
+app.get('/partials/:filename', routes.partials);
+app.get('*', routes.index);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
