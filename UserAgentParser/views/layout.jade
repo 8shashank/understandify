@@ -1,19 +1,7 @@
+doctype html
 html
   head
-    // SCROLLS
-    // load bootstrap and fontawesome via CDN
-    link(rel='stylesheet', href='//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css')
-    link(rel='stylesheet', href='//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css')
-    // SPELLS
-    // load angular and angular route via CDN
-    script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js')
-    script(src='//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js')
-    // script(src='script.js')
-  body(ng-controller="mainController")
-    .col-md-3
-      include navbar
-    .col-md-9
-      h1= title
-      p Welcome to #{title}
-      #main
-        div(ng-view='')
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body
+    block content
